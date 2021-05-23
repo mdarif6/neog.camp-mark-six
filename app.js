@@ -16,12 +16,17 @@ function errorHandler(error) {
 function clickHandler() {
   var inputText = textInput.value; //taking input
 
-  // calling server for precessing
+  // calling server for precessing}
+
+  //   callback
 
   fetch(getTranslationURL(inputText))
-    .then((response) => response.json())
-    .then((json) => {
-      var translatedText = json.contents.translated;
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      var translatedText = data.contents.translated;
       outputDiv.innerText = translatedText;
     })
     .catch(errorHandler);
